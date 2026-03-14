@@ -1,0 +1,14 @@
+{
+  "name": "mneme",
+  "owner": {
+    "name": "Mneme",
+    "url": "https://mnem.dev"
+  },
+  "plugins": [
+    {
+      "name": "mneme",
+      "source": "./mneme",
+      "description": "Persistent team memory for AI coding agents. Automatically captures decisions, patterns, bugs, and conventions — searchable across repos and sessions."
+    }
+  ]
+}

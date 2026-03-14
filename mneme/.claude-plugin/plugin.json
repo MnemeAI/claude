@@ -1,0 +1,12 @@
+{
+  "name": "mneme",
+  "description": "Persistent team memory for AI coding agents. Automatically captures decisions, patterns, bugs, and conventions — searchable across repos and sessions.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Mneme",
+    "url": "https://mnem.dev"
+  },
+  "homepage": "https://mnem.dev",
+  "repository": "https://github.com/MnemeAI/claude",
+  "license": "MIT"
+}
