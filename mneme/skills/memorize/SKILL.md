@@ -34,9 +34,8 @@ Scan the conversation for:
 
 ### Provenance (always include)
 
-- **author**: The human's GitHub username or name (detect from git config or conversation context)
-- **source_tool**: The tool you're running in — `"claude-code"`, `"cursor"`, `"codex"`, `"windsurf"`, or `"dashboard"`
-- **session_id**: In Claude Code, use `${CLAUDE_SESSION_ID}` (built-in substitution variable). For other tools, omit if not available.
+- **author**: Detect from `git config user.name` or conversation context
+- **source_tool**: `"claude-code"`
 
 ## What NOT to memorize
 
@@ -51,5 +50,5 @@ Scan the conversation for:
 1. Review the conversation for memory-worthy events
 2. Draft each memory with all required fields
 3. Call `mcp__mneme__create_memory` for each
-4. If the API fails, note the failure — the `PostToolUseFailure` hook will save it locally
+4. If the API fails, note the failure — the PostToolUse hook will save it locally as a fallback
 5. Report what was saved

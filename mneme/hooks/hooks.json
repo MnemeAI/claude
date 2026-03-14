@@ -1,7 +1,7 @@
 {
-  "description": "Mneme memory hooks: auto-extract memories before context loss, fallback on API failure",
+  "description": "Mneme memory hooks: fallback on API failure, reminder on session end",
   "hooks": {
-    "PostToolUseFailure": [
+    "PostToolUse": [
       {
         "matcher": "mcp__mneme__create_memory",
         "hooks": [
@@ -9,20 +9,7 @@
             "type": "command",
             "command": "\"${CLAUDE_PLUGIN_ROOT}/scripts/fallback-memory.sh\"",
             "timeout": 10,
-            "statusMessage": "Saving memory to local fallback..."
-          }
-        ]
-      }
-    ],
-    "PreCompact": [
-      {
-        "matcher": "auto",
-        "hooks": [
-          {
-            "type": "prompt",
-            "prompt": "Check if unsaved memory-worthy events occurred in this session: bug fixes, architecture decisions, non-obvious patterns, conventions, or debugging dead-ends. If mcp__mneme__create_memory was already called for them, they are saved.\n\nRespond with ONLY one of these two JSON objects, nothing else:\n{\"ok\": true}\n{\"ok\": false, \"reason\": \"[mneme] Unsaved: <brief list>\"}\n\nSession:\n$ARGUMENTS",
-            "model": "haiku",
-            "timeout": 30
+            "statusMessage": "Checking memory save result..."
           }
         ]
       }

@@ -11,10 +11,14 @@ Configure the Mneme MCP server for persistent team memory. If Mneme is already c
 
 ### Step 1: Check existing config
 
-Read `~/.claude.json` and check if `mcpServers.mneme` already exists.
+Run this command to check if Mneme is already configured:
 
-- If it exists and MCP is connected: tell the user Mneme is already configured. Ask if they want to reconfigure (new API key, different server URL).
-- If it doesn't exist or user wants to reconfigure: continue to Step 2.
+```bash
+jq '.mcpServers.mneme // empty' ~/.claude.json 2>/dev/null
+```
+
+- If it returns a non-empty object: tell the user Mneme is already configured. Ask if they want to reconfigure (new API key, different server URL).
+- If it returns empty or the file doesn't exist: continue to Step 2.
 
 ### Step 2: API key
 
@@ -22,15 +26,15 @@ If the user provided an API key as `$ARGUMENTS`, use it. Otherwise ask:
 
 > You need a Mneme API key. If you already have one, paste it here. Otherwise visit https://mnem.dev/dashboard/settings to create one.
 
-Validate the key starts with `mneme_`.
+Validate the key starts with `mneme_`. If it doesn't, tell the user the key format is invalid (Mneme keys always start with `mneme_`) and ask them to try again.
 
 ### Step 3: Detect project
 
-Run `git remote get-url origin` to detect the current repo. Extract `owner/repo` from the URL.
+Run `git remote get-url origin` to detect the current repo. Extract `owner/repo` from the URL (strip `.git` suffix and host prefix).
 
 ### Step 4: Configure MCP server
 
-Read `~/.claude.json` (create with `{}` if missing). Add or update `mcpServers.mneme`:
+Read `~/.claude.json` (create with `{}` if missing). Add or update ONLY the `mcpServers.mneme` entry, preserving all other content:
 
 ```json
 {
@@ -46,13 +50,13 @@ Read `~/.claude.json` (create with `{}` if missing). Add or update `mcpServers.m
 }
 ```
 
-Replace `<API_KEY>` with the actual key. Preserve all existing entries.
+Replace `<API_KEY>` with the actual key.
 
 ### Step 5: Verify connection
 
 Try calling `mcp__mneme__search_memories` with query "test". If the MCP server isn't connected yet, tell the user to run `/mcp` to connect, then retry.
 
-- **Success**: connection verified
+- **Success**: connection verified (empty results are fine — it means the connection works but no memories exist yet)
 - **Auth error**: key invalid — check https://mnem.dev/dashboard/settings
 - **Connection error**: suggest `/mcp` to connect, then retry
 

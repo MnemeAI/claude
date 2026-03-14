@@ -5,13 +5,16 @@
     "url": "https://mnem.dev"
   },
   "metadata": {
-    "description": "Plugins by Mneme — persistent team memory for AI coding agents."
+    "description": "Plugins by Mneme — persistent team memory for AI coding agents.",
+    "version": "1.0.0"
   },
   "plugins": [
     {
       "name": "mneme",
       "source": "./mneme",
-      "description": "Persistent team memory for AI coding agents. Automatically captures decisions, patterns, bugs, and conventions — searchable across repos and sessions."
+      "description": "Persistent team memory for AI coding agents. Automatically captures decisions, patterns, bugs, and conventions — searchable across repos and sessions.",
+      "version": "1.0.0",
+      "category": "productivity"
     }
   ]
 }
