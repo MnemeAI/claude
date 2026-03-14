@@ -4,6 +4,9 @@
     "name": "Mneme",
     "url": "https://mnem.dev"
   },
+  "metadata": {
+    "description": "Plugins by Mneme — persistent team memory for AI coding agents."
+  },
   "plugins": [
     {
       "name": "mneme",
